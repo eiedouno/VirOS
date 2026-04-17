@@ -44,13 +44,15 @@ inject_pre_chroot() {
     echo "[*] Injecting pre-chroot customizations..."
     if [ -d "etc" ]; then
         sudo cp -r etc/* "$ROOTFS/etc/"
-    else
-        echo "[!] No local etc/ directory found, skipping."
     fi
     if [ -d "usr/share" ]; then
         sudo cp -r usr/share/* "$ROOTFS/usr/share/"
-    else
-        echo "[!] No local usr/share/ directory found, skipping."
+    fi
+
+    # Copy compiled C++ tools into rootfs
+    if [ -d "build-cpp" ]; then
+        sudo cp build-cpp/cursed-cat "$ROOTFS/usr/local/bin/cat"
+        echo "[*] Injected cursed-cat as /usr/local/bin/cat"
     fi
 }
 

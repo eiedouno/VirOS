@@ -1,0 +1,7 @@
+/home/grady/VirOS/build-cpp/CMakeFiles/cursed-cat.dir
+/home/grady/VirOS/build-cpp/CMakeFiles/edit_cache.dir
+/home/grady/VirOS/build-cpp/CMakeFiles/rebuild_cache.dir
+/home/grady/VirOS/build-cpp/CMakeFiles/list_install_components.dir
+/home/grady/VirOS/build-cpp/CMakeFiles/install.dir
+/home/grady/VirOS/build-cpp/CMakeFiles/install/local.dir
+/home/grady/VirOS/build-cpp/CMakeFiles/install/strip.dir
