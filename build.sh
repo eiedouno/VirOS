@@ -1,18 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# ============================================================
-#  Joke Distro Build Script (Ubuntu‑based)
-#  This script:
-#    1. Creates a working directory
-#    2. Bootstraps a minimal Ubuntu filesystem
-#    3. Enters a chroot to install packages + run custom scripts
-#    4. Injects Easter eggs
-#    5. Builds a bootable ISO
-# ============================================================
-
-DISTRO_NAME="cursedbuntu"
-RELEASE="jammy"              # Ubuntu version
+DISTRO_NAME="VirOS"
+RELEASE="jammy"
 WORKDIR="$(pwd)/build"
 ROOTFS="$WORKDIR/rootfs"
 ISO_OUTPUT="$WORKDIR/${DISTRO_NAME}.iso"
@@ -52,8 +42,8 @@ bootstrap_rootfs() {
 # ------------------------------------------------------------
 inject_pre_chroot() {
     echo "[*] Injecting pre-chroot customizations..."
-    sudo cp -r configs/* "$ROOTFS/" || true
-    sudo cp -r branding/* "$ROOTFS/usr/share/" || true
+    sudo cp -r etc/* "$ROOTFS/etc/" || true
+    sudo cp -r usr/share/* "$ROOTFS/usr/share/" || true
 }
 
 # ------------------------------------------------------------
@@ -62,7 +52,7 @@ inject_pre_chroot() {
 run_chroot_customization() {
     echo "[*] Running chroot customization..."
 
-    sudo cp scripts/customize-in-chroot.sh "$ROOTFS/customize.sh"
+    sudo cp scripts/chroot.sh "$ROOTFS/customize.sh"
 
     sudo chroot "$ROOTFS" /bin/bash <<'EOF'
 set -e
@@ -70,8 +60,7 @@ set -e
 echo "[chroot] Updating package lists..."
 apt update
 
-echo "[chroot] Installing packages..."
-apt install -y ubuntu-standard sudo curl neofetch
+echo "[chroot] Installing packages..." apt install -y ubuntu-standard sudo curl neofetch
 
 echo "[chroot] Running custom script..."
 bash /customize.sh
@@ -84,16 +73,7 @@ EOF
 }
 
 # ------------------------------------------------------------
-# 5. Inject Easter eggs AFTER chroot
-# ------------------------------------------------------------
-inject_easter_eggs() {
-    echo "[*] Adding Easter eggs..."
-    sudo cp -r easter-eggs/* "$ROOTFS/usr/local/bin/" || true
-    sudo chmod +x "$ROOTFS/usr/local/bin/"* || true
-}
-
-# ------------------------------------------------------------
-# 6. Build ISO
+# 5. Build ISO
 # ------------------------------------------------------------
 build_iso() {
     echo "[*] Building ISO..."
