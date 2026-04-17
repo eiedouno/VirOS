@@ -12,9 +12,9 @@ ISO_OUTPUT="$WORKDIR/${DISTRO_NAME}.iso"
 # ------------------------------------------------------------
 check_deps() {
     echo "[*] Checking dependencies..."
-    for dep in debootstrap xorriso squashfs-tools grub-pc-bin grub-efi-amd64-bin; do
+    for dep in debootstrap xorriso squashfs-tools grub-pc-bin grub-efi-amd64-bin mformat; do
         if ! command -v "$dep" >/dev/null 2>&1; then
-            echo "Missing dependency: $dep"
+            echo "[-] Missing dependency: $dep"
             exit 1
         fi
     done
@@ -42,8 +42,16 @@ bootstrap_rootfs() {
 # ------------------------------------------------------------
 inject_pre_chroot() {
     echo "[*] Injecting pre-chroot customizations..."
-    sudo cp -r etc/* "$ROOTFS/etc/" || true
-    sudo cp -r usr/share/* "$ROOTFS/usr/share/" || true
+    if [ -d "etc" ]; then
+        sudo cp -r etc/* "$ROOTFS/etc/"
+    else
+        echo "[!] No local etc/ directory found, skipping."
+    fi
+    if [ -d "usr/share" ]; then
+        sudo cp -r usr/share/* "$ROOTFS/usr/share/"
+    else
+        echo "[!] No local usr/share/ directory found, skipping."
+    fi
 }
 
 # ------------------------------------------------------------
@@ -52,59 +60,118 @@ inject_pre_chroot() {
 run_chroot_customization() {
     echo "[*] Running chroot customization..."
 
-    sudo cp scripts/chroot.sh "$ROOTFS/customize.sh"
+    if [ -f "scripts/chroot.sh" ]; then
+        sudo cp scripts/chroot.sh "$ROOTFS/customize.sh"
+        HAVE_CUSTOM=true
+    else
+        echo "[!] scripts/chroot.sh not found, skipping custom script."
+        HAVE_CUSTOM=false
+    fi
 
-    sudo chroot "$ROOTFS" /bin/bash <<'EOF'
+    sudo chroot "$ROOTFS" /bin/bash <<EOF
 set -e
-
 echo "[chroot] Updating package lists..."
 apt update
 
-echo "[chroot] Installing packages..." apt install -y ubuntu-standard sudo curl neofetch
+echo "[chroot] Installing packages..."
+apt install -y ubuntu-standard sudo curl neofetch linux-image-generic
 
 echo "[chroot] Running custom script..."
-bash /customize.sh
+if [ "$HAVE_CUSTOM" = true ] && [ -f /customize.sh ]; then
+    bash /customize.sh
+fi
 
 echo "[chroot] Cleaning up..."
 apt clean
-rm /customize.sh
-
+rm -f /customize.sh
 EOF
 }
 
 # ------------------------------------------------------------
-# 5. Build ISO
+# 5. (Placeholder) Easter eggs
+# ------------------------------------------------------------
+inject_easter_eggs() {
+    echo "[*] Injecting easter eggs... (not yet implemented)"
+    # Add your easter egg logic here
+}
+
+# ------------------------------------------------------------
+# 6. Build ISO
 # ------------------------------------------------------------
 build_iso() {
     echo "[*] Building ISO..."
+    local ISO_DIR="$WORKDIR/iso"
+    mkdir -p "$ISO_DIR/boot/grub"
 
-    mkdir -p "$WORKDIR/iso"
+    # Compress rootfs (exclude /boot from squashfs — it goes in ISO directly)
+    sudo mksquashfs "$ROOTFS" "$ISO_DIR/filesystem.squashfs" -e boot
 
-    # Copy rootfs into ISO structure
-    sudo mksquashfs "$ROOTFS" "$WORKDIR/iso/filesystem.squashfs" -e boot
+    # Copy kernel and initrd from rootfs into ISO boot dir
+    VMLINUZ=$(ls "$ROOTFS/boot/vmlinuz-"* 2>/dev/null | sort -V | tail -1)
+    INITRD=$(ls "$ROOTFS/boot/initrd.img-"* 2>/dev/null | sort -V | tail -1)
 
-    # Copy bootloader files
-    sudo mkdir -p "$WORKDIR/iso/boot/grub"
-    sudo cp /usr/lib/grub/i386-pc/* "$WORKDIR/iso/boot/grub/"
+    if [ -z "$VMLINUZ" ] || [ -z "$INITRD" ]; then
+        echo "[-] Kernel or initrd not found in rootfs. Make sure linux-image-generic was installed."
+        exit 1
+    fi
 
-    # Create GRUB config
-    cat <<EOF | sudo tee "$WORKDIR/iso/boot/grub/grub.cfg"
+    sudo cp "$VMLINUZ" "$ISO_DIR/boot/vmlinuz"
+    sudo cp "$INITRD"  "$ISO_DIR/boot/initrd.img"
+
+    # Build GRUB EFI image
+    sudo grub-mkstandalone \
+        --format=x86_64-efi \
+        --output="$ISO_DIR/boot/grub/bootx64.efi" \
+        --modules="part_gpt part_msdos fat iso9660 normal boot linux echo configfile search" \
+        "boot/grub/grub.cfg=/dev/stdin" <<EOF
 set default=0
 set timeout=3
-
 menuentry "Boot $DISTRO_NAME" {
-    linux /boot/vmlinuz root=/dev/ram0
+    linux /boot/vmlinuz boot=live quiet splash
     initrd /boot/initrd.img
 }
 EOF
 
-    # Build ISO
+    # Create EFI FAT image
+    local EFI_IMG="$WORKDIR/efiboot.img"
+    dd if=/dev/zero of="$EFI_IMG" bs=1M count=4
+    mformat -i "$EFI_IMG" -F ::
+    mmd -i "$EFI_IMG" ::/EFI ::/EFI/BOOT
+    mcopy -i "$EFI_IMG" "$ISO_DIR/boot/grub/bootx64.efi" ::/EFI/BOOT/
+
+    # Write GRUB config for legacy BIOS fallback
+    sudo grub-mkstandalone \
+        --format=i386-pc \
+        --output="$WORKDIR/core.img" \
+        --modules="biosdisk iso9660 normal boot linux echo configfile search" \
+        "boot/grub/grub.cfg=/dev/stdin" <<EOF
+set default=0
+set timeout=3
+menuentry "Boot $DISTRO_NAME" {
+    linux /boot/vmlinuz boot=live quiet splash
+    initrd /boot/initrd.img
+}
+EOF
+    cat /usr/lib/grub/i386-pc/cdboot.img "$WORKDIR/core.img" > "$WORKDIR/bios.img"
+
+    # Build final hybrid ISO
     xorriso -as mkisofs \
         -o "$ISO_OUTPUT" \
-        -isohybrid-mbr /usr/lib/ISOLINUX/isohdpfx.bin \
-        -c boot.cat \
-        -b isolinux.bin \
-        "$WORKDIR/iso"
+        -iso-level 3 \
+        -full-iso9660-filenames \
+        -volid "$DISTRO_NAME" \
+        -eltorito-boot boot/grub/bios.img \
+        -no-emul-boot \
+        -boot-load-size 4 \
+        -boot-info-table \
+        --eltorito-catalog boot/grub/boot.cat \
+        --grub2-boot-info \
+        --grub2-mbr /usr/lib/grub/i386-pc/boot_hybrid.img \
+        -eltorito-alt-boot \
+        -e --interval:appended_partition_2:all:: \
+        -no-emul-boot \
+        -append_partition 2 C12A7328-F81F-11D2-BA4B-00A0C93EC93B "$EFI_IMG" \
+        "$ISO_DIR"
 
     echo "[*] ISO created at: $ISO_OUTPUT"
 }
@@ -119,5 +186,4 @@ inject_pre_chroot
 run_chroot_customization
 inject_easter_eggs
 build_iso
-
 echo "[✓] Build complete!"
