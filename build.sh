@@ -12,7 +12,7 @@ ISO_OUTPUT="$WORKDIR/${DISTRO_NAME}.iso"
 # ------------------------------------------------------------
 check_deps() {
     echo "[*] Checking dependencies..."
-    for dep in debootstrap xorriso squashfs-tools grub-pc-bin grub-efi-amd64-bin mformat; do
+    for dep in debootstrap xorriso mksquashfs grub-mkstandalone mformat; do
         if ! command -v "$dep" >/dev/null 2>&1; then
             echo "[-] Missing dependency: $dep"
             exit 1
@@ -52,7 +52,9 @@ inject_pre_chroot() {
     # Copy compiled C++ tools into rootfs
     if [ -d "build-cpp" ]; then
         sudo cp build-cpp/cursed-cat "$ROOTFS/usr/local/bin/cat"
+        sudo cp build-cpp/cursed-ls "$ROOTFS/usr/local/bin/ls"
         echo "[*] Injected cursed-cat as /usr/local/bin/cat"
+        echo "[*] Injected cursed-ls as /usr/local/bin/ls"
     fi
 }
 
@@ -76,7 +78,7 @@ echo "[chroot] Updating package lists..."
 apt update
 
 echo "[chroot] Installing packages..."
-apt install -y ubuntu-standard sudo curl neofetch linux-image-generic
+apt install -y ubuntu-standard sudo curl linux-image-generic
 
 echo "[chroot] Running custom script..."
 if [ "$HAVE_CUSTOM" = true ] && [ -f /customize.sh ]; then

@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/grady/VirOS
+CMAKE_SOURCE_DIR = /home/grady/GitHub/VirOS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/grady/VirOS/build-cpp
+CMAKE_BINARY_DIR = /home/grady/GitHub/VirOS/build-cpp
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,9 +132,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/grady/VirOS/build-cpp/CMakeFiles /home/grady/VirOS/build-cpp//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/grady/GitHub/VirOS/build-cpp/CMakeFiles /home/grady/GitHub/VirOS/build-cpp//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/grady/VirOS/build-cpp/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/grady/GitHub/VirOS/build-cpp/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -174,6 +174,19 @@ cursed-cat/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-cat.dir/build.make CMakeFiles/cursed-cat.dir/build
 .PHONY : cursed-cat/fast
 
+#=============================================================================
+# Target rules for targets named cursed-ls
+
+# Build rule for target.
+cursed-ls: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cursed-ls
+.PHONY : cursed-ls
+
+# fast build rule for target.
+cursed-ls/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-ls.dir/build.make CMakeFiles/cursed-ls.dir/build
+.PHONY : cursed-ls/fast
+
 src/cursed-cat/main.o: src/cursed-cat/main.cpp.o
 .PHONY : src/cursed-cat/main.o
 
@@ -198,6 +211,30 @@ src/cursed-cat/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-cat.dir/build.make CMakeFiles/cursed-cat.dir/src/cursed-cat/main.cpp.s
 .PHONY : src/cursed-cat/main.cpp.s
 
+src/cursed-ls/main.o: src/cursed-ls/main.cpp.o
+.PHONY : src/cursed-ls/main.o
+
+# target to build an object file
+src/cursed-ls/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-ls.dir/build.make CMakeFiles/cursed-ls.dir/src/cursed-ls/main.cpp.o
+.PHONY : src/cursed-ls/main.cpp.o
+
+src/cursed-ls/main.i: src/cursed-ls/main.cpp.i
+.PHONY : src/cursed-ls/main.i
+
+# target to preprocess a source file
+src/cursed-ls/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-ls.dir/build.make CMakeFiles/cursed-ls.dir/src/cursed-ls/main.cpp.i
+.PHONY : src/cursed-ls/main.cpp.i
+
+src/cursed-ls/main.s: src/cursed-ls/main.cpp.s
+.PHONY : src/cursed-ls/main.s
+
+# target to generate assembly for a file
+src/cursed-ls/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-ls.dir/build.make CMakeFiles/cursed-ls.dir/src/cursed-ls/main.cpp.s
+.PHONY : src/cursed-ls/main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -211,9 +248,13 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... cursed-cat"
+	@echo "... cursed-ls"
 	@echo "... src/cursed-cat/main.o"
 	@echo "... src/cursed-cat/main.i"
 	@echo "... src/cursed-cat/main.s"
+	@echo "... src/cursed-ls/main.o"
+	@echo "... src/cursed-ls/main.i"
+	@echo "... src/cursed-ls/main.s"
 .PHONY : help
 
 

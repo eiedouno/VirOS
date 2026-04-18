@@ -54,16 +54,17 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/grady/VirOS
+CMAKE_SOURCE_DIR = /home/grady/GitHub/VirOS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/grady/VirOS/build-cpp
+CMAKE_BINARY_DIR = /home/grady/GitHub/VirOS/build-cpp
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
 all: CMakeFiles/cursed-cat.dir/all
+all: CMakeFiles/cursed-ls.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -72,6 +73,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/cursed-cat.dir/clean
+clean: CMakeFiles/cursed-ls.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -81,14 +83,14 @@ clean: CMakeFiles/cursed-cat.dir/clean
 CMakeFiles/cursed-cat.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-cat.dir/build.make CMakeFiles/cursed-cat.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-cat.dir/build.make CMakeFiles/cursed-cat.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/grady/VirOS/build-cpp/CMakeFiles --progress-num=1,2 "Built target cursed-cat"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/grady/GitHub/VirOS/build-cpp/CMakeFiles --progress-num=1,2 "Built target cursed-cat"
 .PHONY : CMakeFiles/cursed-cat.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/cursed-cat.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/grady/VirOS/build-cpp/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/grady/GitHub/VirOS/build-cpp/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/cursed-cat.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/grady/VirOS/build-cpp/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/grady/GitHub/VirOS/build-cpp/CMakeFiles 0
 .PHONY : CMakeFiles/cursed-cat.dir/rule
 
 # Convenience name for target.
@@ -99,6 +101,32 @@ cursed-cat: CMakeFiles/cursed-cat.dir/rule
 CMakeFiles/cursed-cat.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-cat.dir/build.make CMakeFiles/cursed-cat.dir/clean
 .PHONY : CMakeFiles/cursed-cat.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/cursed-ls.dir
+
+# All Build rule for target.
+CMakeFiles/cursed-ls.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-ls.dir/build.make CMakeFiles/cursed-ls.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-ls.dir/build.make CMakeFiles/cursed-ls.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/grady/GitHub/VirOS/build-cpp/CMakeFiles --progress-num=3,4 "Built target cursed-ls"
+.PHONY : CMakeFiles/cursed-ls.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/cursed-ls.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/grady/GitHub/VirOS/build-cpp/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/cursed-ls.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/grady/GitHub/VirOS/build-cpp/CMakeFiles 0
+.PHONY : CMakeFiles/cursed-ls.dir/rule
+
+# Convenience name for target.
+cursed-ls: CMakeFiles/cursed-ls.dir/rule
+.PHONY : cursed-ls
+
+# clean rule for target.
+CMakeFiles/cursed-ls.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-ls.dir/build.make CMakeFiles/cursed-ls.dir/clean
+.PHONY : CMakeFiles/cursed-ls.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

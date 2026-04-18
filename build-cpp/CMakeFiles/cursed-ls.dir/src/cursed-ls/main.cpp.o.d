@@ -1,5 +1,5 @@
-CMakeFiles/cursed-cat.dir/src/cursed-cat/main.cpp.o: \
- /home/grady/GitHub/VirOS/src/cursed-cat/main.cpp \
+CMakeFiles/cursed-ls.dir/src/cursed-ls/main.cpp.o: \
+ /home/grady/GitHub/VirOS/src/cursed-ls/main.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/13/iostream \
  /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
@@ -162,8 +162,4 @@ CMakeFiles/cursed-cat.dir/src/cursed-cat/main.cpp.o: \
  /usr/include/c++/13/bits/locale_facets.tcc \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
- /usr/include/c++/13/bits/istream.tcc /usr/include/c++/13/fstream \
- /usr/include/c++/13/bits/codecvt.h \
- /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
- /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
- /usr/include/c++/13/bits/fstream.tcc /usr/include/c++/13/ctime
+ /usr/include/c++/13/bits/istream.tcc
