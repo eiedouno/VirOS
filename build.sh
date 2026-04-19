@@ -123,17 +123,22 @@ build_iso() {
     sudo cp "$INITRD"  "$ISO_DIR/boot/initrd.img"
 
     # Build GRUB EFI image
-    sudo grub-mkstandalone \
-        --format=x86_64-efi \
-        --output="$ISO_DIR/boot/grub/bootx64.efi" \
-        --modules="part_gpt part_msdos fat iso9660 normal boot linux echo configfile search" \
-        "boot/grub/grub.cfg=/dev/stdin" <<EOF
+   mkdir -p "$ISO_DIR/boot/grub"
+cat > "$ISO_DIR/boot/grub/grub.cfg" <<EOF
 set default=0
 set timeout=3
 menuentry "Boot $DISTRO_NAME" {
     linux /boot/vmlinuz boot=live quiet splash
     initrd /boot/initrd.img
 }
+EOF
+grub-mkimage \
+    --format=i386-pc \
+    --output="$WORKDIR/core.img" \
+    --prefix="/boot/grub" \
+    biosdisk iso9660 linux normal configfile search
+cat /usr/lib/grub/i386-pc/cdboot.img "$WORKDIR/core.img" > "$WORKDIR/bios.img"
+cp -r /usr/lib/grub/i386-pc "$ISO_DIR/boot/grub/i386-pc"
 EOF
 
     # Create EFI FAT image
