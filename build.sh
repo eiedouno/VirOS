@@ -147,7 +147,7 @@ EOF
     sudo grub-mkstandalone \
         --format=i386-pc \
         --output="$WORKDIR/core.img" \
-        --modules="biosdisk iso9660 normal boot linux echo configfile search" \
+        --modules="biosdisk iso9660 linux" \
         "boot/grub/grub.cfg=/dev/stdin" <<EOF
 set default=0
 set timeout=3
