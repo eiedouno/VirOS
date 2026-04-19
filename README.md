@@ -64,7 +64,7 @@ The final build is `./VirOS/build/VirOS.iso`. Use `dd` or another program to bur
 Example: 
 
 ```bash
-dd if=./VirOS.iso of=/dev/sda2 bs=4M status=progress
+dd if=./VirOS.iso of=/dev/sdaX bs=4M status=progress
 sync
 ```
 
