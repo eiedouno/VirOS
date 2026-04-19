@@ -107,24 +107,23 @@ build_iso() {
     local ISO_DIR="$WORKDIR/iso"
     mkdir -p "$ISO_DIR/boot/grub"
 
-    # Compress rootfs (exclude /boot from squashfs — it goes in ISO directly)
-    sudo mksquashfs "$ROOTFS" "$ISO_DIR/filesystem.squashfs" -e boot
+    # Compress rootfs
+    mksquashfs "$ROOTFS" "$ISO_DIR/filesystem.squashfs" -e boot
 
-    # Copy kernel and initrd from rootfs into ISO boot dir
+    # Copy kernel and initrd
     VMLINUZ=$(ls "$ROOTFS/boot/vmlinuz-"* 2>/dev/null | sort -V | tail -1)
     INITRD=$(ls "$ROOTFS/boot/initrd.img-"* 2>/dev/null | sort -V | tail -1)
 
     if [ -z "$VMLINUZ" ] || [ -z "$INITRD" ]; then
-        echo "[-] Kernel or initrd not found in rootfs. Make sure linux-image-generic was installed."
+        echo "[-] Kernel or initrd not found in rootfs."
         exit 1
     fi
 
-    sudo cp "$VMLINUZ" "$ISO_DIR/boot/vmlinuz"
-    sudo cp "$INITRD"  "$ISO_DIR/boot/initrd.img"
+    cp "$VMLINUZ" "$ISO_DIR/boot/vmlinuz"
+    cp "$INITRD"  "$ISO_DIR/boot/initrd.img"
 
-    # Build GRUB EFI image
-   mkdir -p "$ISO_DIR/boot/grub"
-cat > "$ISO_DIR/boot/grub/grub.cfg" <<EOF
+    # Write shared grub.cfg
+    cat > "$ISO_DIR/boot/grub/grub.cfg" <<EOF
 set default=0
 set timeout=3
 menuentry "Boot $DISTRO_NAME" {
@@ -132,36 +131,32 @@ menuentry "Boot $DISTRO_NAME" {
     initrd /boot/initrd.img
 }
 EOF
-grub-mkimage \
-    --format=i386-pc \
-    --output="$WORKDIR/core.img" \
-    --prefix="/boot/grub" \
-    biosdisk iso9660 linux normal configfile search
-cat /usr/lib/grub/i386-pc/cdboot.img "$WORKDIR/core.img" > "$WORKDIR/bios.img"
-cp -r /usr/lib/grub/i386-pc "$ISO_DIR/boot/grub/i386-pc"
-EOF
+
+    # Build GRUB EFI image
+    grub-mkstandalone \
+        --format=x86_64-efi \
+        --output="$ISO_DIR/boot/grub/bootx64.efi" \
+        --modules="part_gpt part_msdos fat iso9660 normal boot linux echo configfile search" \
+        "boot/grub/grub.cfg=$ISO_DIR/boot/grub/grub.cfg"
 
     # Create EFI FAT image
     local EFI_IMG="$WORKDIR/efiboot.img"
-    dd if=/dev/zero of="$EFI_IMG" bs=1M count=64 #You can also try anything from 20-64. 64 and 32 are best though
+    dd if=/dev/zero of="$EFI_IMG" bs=1M count=64
     mformat -i "$EFI_IMG" -F ::
     mmd -i "$EFI_IMG" ::/EFI ::/EFI/BOOT
     mcopy -i "$EFI_IMG" "$ISO_DIR/boot/grub/bootx64.efi" ::/EFI/BOOT/
 
-    # Write GRUB config for legacy BIOS fallback
-    sudo grub-mkstandalone \
-        --format=i386-pc \
-        --output="$WORKDIR/core.img" \
-        --modules="biosdisk iso9660" \
-        "boot/grub/grub.cfg=/dev/stdin" <<EOF
-set default=0
-set timeout=3
-menuentry "Boot $DISTRO_NAME" {
-    linux /boot/vmlinuz boot=live quiet splash
-    initrd /boot/initrd.img
-}
-EOF
-    cat /usr/lib/grub/i386-pc/cdboot.img "$WORKDIR/core.img" > "$WORKDIR/bios.img"
+    # Build GRUB BIOS image using grub-mkimage
+    grub-mkimage \
+        -O i386-pc \
+        -o "$WORKDIR/core.img" \
+        -p /boot/grub \
+        biosdisk iso9660 normal linux configfile search
+
+    cat /usr/lib/grub/i386-pc/cdboot.img "$WORKDIR/core.img" > "$ISO_DIR/boot/grub/bios.img"
+
+    # Copy GRUB i386-pc modules so they can be loaded at runtime
+    cp -r /usr/lib/grub/i386-pc "$ISO_DIR/boot/grub/i386-pc"
 
     # Build final hybrid ISO
     xorriso -as mkisofs \
