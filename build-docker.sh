@@ -179,6 +179,5 @@ prepare_dirs
 bootstrap_rootfs
 inject_pre_chroot
 run_chroot_customization
-inject_easter_eggs
 build_iso
 echo "[✓] Build complete!"
