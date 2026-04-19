@@ -1,5 +1,6 @@
 /home/grady/GitHub/VirOS/build-cpp/CMakeFiles/cursed-cat.dir
 /home/grady/GitHub/VirOS/build-cpp/CMakeFiles/cursed-ls.dir
+/home/grady/GitHub/VirOS/build-cpp/CMakeFiles/cursed-vim.dir
 /home/grady/GitHub/VirOS/build-cpp/CMakeFiles/edit_cache.dir
 /home/grady/GitHub/VirOS/build-cpp/CMakeFiles/rebuild_cache.dir
 /home/grady/GitHub/VirOS/build-cpp/CMakeFiles/list_install_components.dir

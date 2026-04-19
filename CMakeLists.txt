@@ -6,6 +6,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -static")
 
 add_executable(cursed-cat src/cursed-cat/main.cpp)
 add_executable(cursed-ls src/cursed-ls/main.cpp)
+add_executable(cursed-vim src/cursed-vim/main.cpp)
 
-install(TARGETS cursed-cat DESTINATION bin)
-install(TARGETS cursed-cat cursed-ls DESTINATION bin)
+install(TARGETS cursed-cat cursed-ls cursed-vim DESTINATION bin)

@@ -65,6 +65,7 @@ CMAKE_BINARY_DIR = /home/grady/GitHub/VirOS/build-cpp
 # The main recursive "all" target.
 all: CMakeFiles/cursed-cat.dir/all
 all: CMakeFiles/cursed-ls.dir/all
+all: CMakeFiles/cursed-vim.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -74,6 +75,7 @@ preinstall:
 # The main recursive "clean" target.
 clean: CMakeFiles/cursed-cat.dir/clean
 clean: CMakeFiles/cursed-ls.dir/clean
+clean: CMakeFiles/cursed-vim.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -127,6 +129,32 @@ cursed-ls: CMakeFiles/cursed-ls.dir/rule
 CMakeFiles/cursed-ls.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-ls.dir/build.make CMakeFiles/cursed-ls.dir/clean
 .PHONY : CMakeFiles/cursed-ls.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/cursed-vim.dir
+
+# All Build rule for target.
+CMakeFiles/cursed-vim.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-vim.dir/build.make CMakeFiles/cursed-vim.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-vim.dir/build.make CMakeFiles/cursed-vim.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/grady/GitHub/VirOS/build-cpp/CMakeFiles --progress-num=5,6 "Built target cursed-vim"
+.PHONY : CMakeFiles/cursed-vim.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/cursed-vim.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/grady/GitHub/VirOS/build-cpp/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/cursed-vim.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/grady/GitHub/VirOS/build-cpp/CMakeFiles 0
+.PHONY : CMakeFiles/cursed-vim.dir/rule
+
+# Convenience name for target.
+cursed-vim: CMakeFiles/cursed-vim.dir/rule
+.PHONY : cursed-vim
+
+# clean rule for target.
+CMakeFiles/cursed-vim.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-vim.dir/build.make CMakeFiles/cursed-vim.dir/clean
+.PHONY : CMakeFiles/cursed-vim.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

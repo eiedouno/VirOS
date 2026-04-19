@@ -1,0 +1,1 @@
+/usr/bin/c++  -O2 -static -O3 -DNDEBUG "CMakeFiles/cursed-vim.dir/src/cursed-vim/main.cpp.o" -o cursed-vim 

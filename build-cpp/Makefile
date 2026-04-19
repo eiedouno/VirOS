@@ -187,6 +187,19 @@ cursed-ls/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-ls.dir/build.make CMakeFiles/cursed-ls.dir/build
 .PHONY : cursed-ls/fast
 
+#=============================================================================
+# Target rules for targets named cursed-vim
+
+# Build rule for target.
+cursed-vim: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cursed-vim
+.PHONY : cursed-vim
+
+# fast build rule for target.
+cursed-vim/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-vim.dir/build.make CMakeFiles/cursed-vim.dir/build
+.PHONY : cursed-vim/fast
+
 src/cursed-cat/main.o: src/cursed-cat/main.cpp.o
 .PHONY : src/cursed-cat/main.o
 
@@ -235,6 +248,30 @@ src/cursed-ls/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-ls.dir/build.make CMakeFiles/cursed-ls.dir/src/cursed-ls/main.cpp.s
 .PHONY : src/cursed-ls/main.cpp.s
 
+src/cursed-vim/main.o: src/cursed-vim/main.cpp.o
+.PHONY : src/cursed-vim/main.o
+
+# target to build an object file
+src/cursed-vim/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-vim.dir/build.make CMakeFiles/cursed-vim.dir/src/cursed-vim/main.cpp.o
+.PHONY : src/cursed-vim/main.cpp.o
+
+src/cursed-vim/main.i: src/cursed-vim/main.cpp.i
+.PHONY : src/cursed-vim/main.i
+
+# target to preprocess a source file
+src/cursed-vim/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-vim.dir/build.make CMakeFiles/cursed-vim.dir/src/cursed-vim/main.cpp.i
+.PHONY : src/cursed-vim/main.cpp.i
+
+src/cursed-vim/main.s: src/cursed-vim/main.cpp.s
+.PHONY : src/cursed-vim/main.s
+
+# target to generate assembly for a file
+src/cursed-vim/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-vim.dir/build.make CMakeFiles/cursed-vim.dir/src/cursed-vim/main.cpp.s
+.PHONY : src/cursed-vim/main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -249,12 +286,16 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... cursed-cat"
 	@echo "... cursed-ls"
+	@echo "... cursed-vim"
 	@echo "... src/cursed-cat/main.o"
 	@echo "... src/cursed-cat/main.i"
 	@echo "... src/cursed-cat/main.s"
 	@echo "... src/cursed-ls/main.o"
 	@echo "... src/cursed-ls/main.i"
 	@echo "... src/cursed-ls/main.s"
+	@echo "... src/cursed-vim/main.o"
+	@echo "... src/cursed-vim/main.i"
+	@echo "... src/cursed-vim/main.s"
 .PHONY : help
 
 
