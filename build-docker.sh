@@ -78,7 +78,7 @@ echo "[chroot] Updating package lists..."
 apt update
 
 echo "[chroot] Installing packages..."
-apt install -y ubuntu-standard sudo curl linux-image-generic
+apt install -y ubuntu-standard sudo curl linux-image-generic live-boot live-boot-initramfs-tools
 
 echo "[chroot] Running custom script..."
 if [ "$HAVE_CUSTOM" = true ] && [ -f /customize.sh ]; then
