@@ -138,7 +138,7 @@ EOF
 
     # Create EFI FAT image
     local EFI_IMG="$WORKDIR/efiboot.img"
-    dd if=/dev/zero of="$EFI_IMG" bs=1M count=4
+    dd if=/dev/zero of="$EFI_IMG" bs=1M count=64 #You can also try anything from 20-64. 64 and 32 are best though
     mformat -i "$EFI_IMG" -F ::
     mmd -i "$EFI_IMG" ::/EFI ::/EFI/BOOT
     mcopy -i "$EFI_IMG" "$ISO_DIR/boot/grub/bootx64.efi" ::/EFI/BOOT/
