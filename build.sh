@@ -78,11 +78,10 @@ echo "[chroot] Updating package lists..."
 apt update
 
 echo "[chroot] Installing packages..."
-apt install -y ubuntu-standard sudo curl linux-image-generic live-boot live-boot-initramfs-tools
+apt install -y ubuntu-standard sudo curl linux-image-generic casper
 
 echo "[chroot] Running custom script..."
-if [ "$HAVE_CUSTOM" = true ] && [ -f /customize.sh ]; then
-    bash /customize.sh
+if [ "$HAVE_CUSTOM" = true ] && [ -f /customize.sh ]; then bash /customize.sh
 fi
 
 echo "[chroot] Cleaning up..."
@@ -92,15 +91,7 @@ EOF
 }
 
 # ------------------------------------------------------------
-# 5. (Placeholder) Easter eggs
-# ------------------------------------------------------------
-inject_easter_eggs() {
-    echo "[*] Injecting easter eggs... (not yet implemented)"
-    # Add your easter egg logic here
-}
-
-# ------------------------------------------------------------
-# 6. Build ISO
+# 5. Build ISO
 # ------------------------------------------------------------
 build_iso() {
     echo "[*] Building ISO..."
@@ -127,7 +118,7 @@ build_iso() {
 set default=0
 set timeout=3
 menuentry "Boot $DISTRO_NAME" {
-    linux /boot/vmlinuz boot=live quiet splash
+    linux /boot/vmlinuz boot=casper quiet splash
     initrd /boot/initrd.img
 }
 EOF
