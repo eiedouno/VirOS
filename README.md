@@ -6,21 +6,21 @@ A perfectly normal OS
 
 **You must be running Ubuntu.**
 
-### Copy the repo
+Copy the repo
 
 ```bash
 git clone https://github.com/eiedouno/VirOS
 cd VirOS
 ```
 
-### Run the build script
+Run the build script
 
 ```bash
 chmod +x build.sh
 sudo ./build.sh
 ```
 
-#### For Docker:
+## For Docker:
 
 If you're running Ubuntu inside docker, make sure you started the container with `--privileged`
 
@@ -35,7 +35,7 @@ chmod +x build-docker.sh
 
 If nothing failed, `exit` the container.
 
-##### Extract the iso file from the container.
+### Extract the iso file from the container.
 
 First find the id of the `ubuntu-tmp` container.
 
