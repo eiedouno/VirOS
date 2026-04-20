@@ -98,10 +98,11 @@ build_iso() {
     local ISO_DIR="$WORKDIR/iso"
     mkdir -p "$ISO_DIR/boot/grub"
 
-    # Compress rootfs
-    mksquashfs "$ROOTFS" "$ISO_DIR/filesystem.squashfs" -e boot
+    # Compress rootfs into /casper/ (required by casper)
+    mkdir -p "$ISO_DIR/casper"
+    mksquashfs "$ROOTFS" "$ISO_DIR/casper/filesystem.squashfs" -e boot
 
-    # Copy kernel and initrd
+    # Copy kernel and initrd into /casper/
     VMLINUZ=$(ls "$ROOTFS/boot/vmlinuz-"* 2>/dev/null | sort -V | tail -1)
     INITRD=$(ls "$ROOTFS/boot/initrd.img-"* 2>/dev/null | sort -V | tail -1)
 
@@ -110,16 +111,20 @@ build_iso() {
         exit 1
     fi
 
-    cp "$VMLINUZ" "$ISO_DIR/boot/vmlinuz"
-    cp "$INITRD"  "$ISO_DIR/boot/initrd.img"
+    cp "$VMLINUZ" "$ISO_DIR/casper/vmlinuz"
+    cp "$INITRD"  "$ISO_DIR/casper/initrd"
 
-    # Write shared grub.cfg
+    # .disk/info required by casper to identify the medium
+    mkdir -p "$ISO_DIR/.disk"
+    echo "$DISTRO_NAME" > "$ISO_DIR/.disk/info"
+
+    # Write shared grub.cfg pointing to /casper/
     cat > "$ISO_DIR/boot/grub/grub.cfg" <<EOF
 set default=0
 set timeout=3
 menuentry "Boot $DISTRO_NAME" {
-    linux /boot/vmlinuz boot=casper quiet splash
-    initrd /boot/initrd.img
+    linux /casper/vmlinuz boot=casper quiet splash
+    initrd /casper/initrd
 }
 EOF
 
