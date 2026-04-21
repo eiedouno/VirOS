@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/cursed-ls.dir/link.d"
   "CMakeFiles/cursed-ls.dir/src/cursed-ls/main.cpp.o"
   "CMakeFiles/cursed-ls.dir/src/cursed-ls/main.cpp.o.d"
   "cursed-ls"

@@ -1,5 +1,5 @@
-CMakeFiles/cursed-ls.dir/src/cursed-ls/main.cpp.o: \
- /root/GitHub/VirOS/src/cursed-ls/main.cpp /usr/include/stdc-predef.h \
+CMakeFiles/cursed-help.dir/src/cursed-help/main.cpp.o: \
+ /root/GitHub/VirOS/src/cursed-help/main.cpp /usr/include/stdc-predef.h \
  /usr/include/c++/15.2.1/iostream \
  /usr/include/c++/15.2.1/bits/requires_hosted.h \
  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -149,4 +149,4 @@ CMakeFiles/cursed-ls.dir/src/cursed-ls/main.cpp.o: \
  /usr/include/c++/15.2.1/bits/locale_facets.tcc \
  /usr/include/c++/15.2.1/bits/basic_ios.tcc \
  /usr/include/c++/15.2.1/bits/ostream.tcc /usr/include/c++/15.2.1/istream \
- /usr/include/c++/15.2.1/bits/istream.tcc /usr/include/c++/15.2.1/ctime
+ /usr/include/c++/15.2.1/bits/istream.tcc

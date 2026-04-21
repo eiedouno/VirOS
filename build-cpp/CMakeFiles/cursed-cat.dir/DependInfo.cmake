@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/grady/GitHub/VirOS/src/cursed-cat/main.cpp" "CMakeFiles/cursed-cat.dir/src/cursed-cat/main.cpp.o" "gcc" "CMakeFiles/cursed-cat.dir/src/cursed-cat/main.cpp.o.d"
+  "/root/GitHub/VirOS/src/cursed-cat/main.cpp" "CMakeFiles/cursed-cat.dir/src/cursed-cat/main.cpp.o" "gcc" "CMakeFiles/cursed-cat.dir/src/cursed-cat/main.cpp.o.d"
+  "" "cursed-cat" "gcc" "CMakeFiles/cursed-cat.dir/link.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

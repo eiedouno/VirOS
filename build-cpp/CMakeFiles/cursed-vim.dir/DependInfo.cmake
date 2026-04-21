@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/grady/GitHub/VirOS/src/cursed-vim/main.cpp" "CMakeFiles/cursed-vim.dir/src/cursed-vim/main.cpp.o" "gcc" "CMakeFiles/cursed-vim.dir/src/cursed-vim/main.cpp.o.d"
+  "/root/GitHub/VirOS/src/cursed-vim/main.cpp" "CMakeFiles/cursed-vim.dir/src/cursed-vim/main.cpp.o" "gcc" "CMakeFiles/cursed-vim.dir/src/cursed-vim/main.cpp.o.d"
+  "" "cursed-vim" "gcc" "CMakeFiles/cursed-vim.dir/link.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
