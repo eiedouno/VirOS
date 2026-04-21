@@ -1,7 +1,7 @@
 #!/bin/bash
 
 pln() {
-    printf "\e[34m[chroot.sh] %b\n" "$@"
+    printf "\e[34m[chroot.sh] %b\n\e[0m" "$@"
 }
 
 pln "Installing [gnupg]"
