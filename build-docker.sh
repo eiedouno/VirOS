@@ -53,8 +53,12 @@ inject_pre_chroot() {
     if [ -d "build-cpp" ]; then
         cp build-cpp/cursed-cat "$ROOTFS/usr/local/bin/cat"
         cp build-cpp/cursed-ls "$ROOTFS/usr/local/bin/ls"
+        cp build-cpp/cursed-vim "$ROOTFS/usr/local/bin/vim"
+        cp build-cpp/cursed-help "$ROOTFS/usr/local/bin/help"
+        echo "[*] Injected cursed-vim as /usr/local/bin/vim"
         echo "[*] Injected cursed-cat as /usr/local/bin/cat"
         echo "[*] Injected cursed-ls as /usr/local/bin/ls"
+        echo "[*] Injected cursed-help as /usr/local/bin/help"
     fi
 }
 
