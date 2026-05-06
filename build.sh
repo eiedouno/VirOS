@@ -55,10 +55,12 @@ inject_pre_chroot() {
         sudo cp build-cpp/cursed-ls "$ROOTFS/usr/local/bin/ls"
         sudo cp build-cpp/cursed-vim "$ROOTFS/usr/local/bin/vim"
         sudo cp build-cpp/cursed-help "$ROOTFS/usr/local/bin/help"
+        sudo cp build-cpp/cursed-mkdir "$ROOTFS/usr/local/bin/mkdir"
         echo "[*] Injected cursed-vim as /usr/local/bin/vim"
         echo "[*] Injected cursed-cat as /usr/local/bin/cat"
         echo "[*] Injected cursed-ls as /usr/local/bin/ls"
         echo "[*] Injected cursed-help as /usr/local/bin/help"
+        echo "[*] Injected cursed-mkdir as /usr/local/bin/mkdir"
     fi
 }
 

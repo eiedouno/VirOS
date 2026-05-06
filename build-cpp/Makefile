@@ -213,6 +213,19 @@ cursed-help/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-help.dir/build.make CMakeFiles/cursed-help.dir/build
 .PHONY : cursed-help/fast
 
+#=============================================================================
+# Target rules for targets named cursed-mkdir
+
+# Build rule for target.
+cursed-mkdir: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cursed-mkdir
+.PHONY : cursed-mkdir
+
+# fast build rule for target.
+cursed-mkdir/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-mkdir.dir/build.make CMakeFiles/cursed-mkdir.dir/build
+.PHONY : cursed-mkdir/fast
+
 src/cursed-cat/main.o: src/cursed-cat/main.cpp.o
 .PHONY : src/cursed-cat/main.o
 
@@ -285,6 +298,30 @@ src/cursed-ls/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-ls.dir/build.make CMakeFiles/cursed-ls.dir/src/cursed-ls/main.cpp.s
 .PHONY : src/cursed-ls/main.cpp.s
 
+src/cursed-mkdir/main.o: src/cursed-mkdir/main.cpp.o
+.PHONY : src/cursed-mkdir/main.o
+
+# target to build an object file
+src/cursed-mkdir/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-mkdir.dir/build.make CMakeFiles/cursed-mkdir.dir/src/cursed-mkdir/main.cpp.o
+.PHONY : src/cursed-mkdir/main.cpp.o
+
+src/cursed-mkdir/main.i: src/cursed-mkdir/main.cpp.i
+.PHONY : src/cursed-mkdir/main.i
+
+# target to preprocess a source file
+src/cursed-mkdir/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-mkdir.dir/build.make CMakeFiles/cursed-mkdir.dir/src/cursed-mkdir/main.cpp.i
+.PHONY : src/cursed-mkdir/main.cpp.i
+
+src/cursed-mkdir/main.s: src/cursed-mkdir/main.cpp.s
+.PHONY : src/cursed-mkdir/main.s
+
+# target to generate assembly for a file
+src/cursed-mkdir/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-mkdir.dir/build.make CMakeFiles/cursed-mkdir.dir/src/cursed-mkdir/main.cpp.s
+.PHONY : src/cursed-mkdir/main.cpp.s
+
 src/cursed-vim/main.o: src/cursed-vim/main.cpp.o
 .PHONY : src/cursed-vim/main.o
 
@@ -324,6 +361,7 @@ help:
 	@echo "... cursed-cat"
 	@echo "... cursed-help"
 	@echo "... cursed-ls"
+	@echo "... cursed-mkdir"
 	@echo "... cursed-vim"
 	@echo "... src/cursed-cat/main.o"
 	@echo "... src/cursed-cat/main.i"
@@ -334,6 +372,9 @@ help:
 	@echo "... src/cursed-ls/main.o"
 	@echo "... src/cursed-ls/main.i"
 	@echo "... src/cursed-ls/main.s"
+	@echo "... src/cursed-mkdir/main.o"
+	@echo "... src/cursed-mkdir/main.i"
+	@echo "... src/cursed-mkdir/main.s"
 	@echo "... src/cursed-vim/main.o"
 	@echo "... src/cursed-vim/main.i"
 	@echo "... src/cursed-vim/main.s"

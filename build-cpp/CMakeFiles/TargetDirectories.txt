@@ -2,6 +2,7 @@
 /root/GitHub/VirOS/build-cpp/CMakeFiles/cursed-ls.dir
 /root/GitHub/VirOS/build-cpp/CMakeFiles/cursed-vim.dir
 /root/GitHub/VirOS/build-cpp/CMakeFiles/cursed-help.dir
+/root/GitHub/VirOS/build-cpp/CMakeFiles/cursed-mkdir.dir
 /root/GitHub/VirOS/build-cpp/CMakeFiles/edit_cache.dir
 /root/GitHub/VirOS/build-cpp/CMakeFiles/rebuild_cache.dir
 /root/GitHub/VirOS/build-cpp/CMakeFiles/list_install_components.dir
