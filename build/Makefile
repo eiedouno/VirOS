@@ -226,6 +226,19 @@ cursed-mkdir/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-mkdir.dir/build.make CMakeFiles/cursed-mkdir.dir/build
 .PHONY : cursed-mkdir/fast
 
+#=============================================================================
+# Target rules for targets named cursed-cd
+
+# Build rule for target.
+cursed-cd: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cursed-cd
+.PHONY : cursed-cd
+
+# fast build rule for target.
+cursed-cd/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-cd.dir/build.make CMakeFiles/cursed-cd.dir/build
+.PHONY : cursed-cd/fast
+
 src/cursed-cat/main.o: src/cursed-cat/main.cpp.o
 .PHONY : src/cursed-cat/main.o
 
@@ -249,6 +262,30 @@ src/cursed-cat/main.s: src/cursed-cat/main.cpp.s
 src/cursed-cat/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-cat.dir/build.make CMakeFiles/cursed-cat.dir/src/cursed-cat/main.cpp.s
 .PHONY : src/cursed-cat/main.cpp.s
+
+src/cursed-cd/main.o: src/cursed-cd/main.cpp.o
+.PHONY : src/cursed-cd/main.o
+
+# target to build an object file
+src/cursed-cd/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-cd.dir/build.make CMakeFiles/cursed-cd.dir/src/cursed-cd/main.cpp.o
+.PHONY : src/cursed-cd/main.cpp.o
+
+src/cursed-cd/main.i: src/cursed-cd/main.cpp.i
+.PHONY : src/cursed-cd/main.i
+
+# target to preprocess a source file
+src/cursed-cd/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-cd.dir/build.make CMakeFiles/cursed-cd.dir/src/cursed-cd/main.cpp.i
+.PHONY : src/cursed-cd/main.cpp.i
+
+src/cursed-cd/main.s: src/cursed-cd/main.cpp.s
+.PHONY : src/cursed-cd/main.s
+
+# target to generate assembly for a file
+src/cursed-cd/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-cd.dir/build.make CMakeFiles/cursed-cd.dir/src/cursed-cd/main.cpp.s
+.PHONY : src/cursed-cd/main.cpp.s
 
 src/cursed-help/main.o: src/cursed-help/main.cpp.o
 .PHONY : src/cursed-help/main.o
@@ -359,6 +396,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... cursed-cat"
+	@echo "... cursed-cd"
 	@echo "... cursed-help"
 	@echo "... cursed-ls"
 	@echo "... cursed-mkdir"
@@ -366,6 +404,9 @@ help:
 	@echo "... src/cursed-cat/main.o"
 	@echo "... src/cursed-cat/main.i"
 	@echo "... src/cursed-cat/main.s"
+	@echo "... src/cursed-cd/main.o"
+	@echo "... src/cursed-cd/main.i"
+	@echo "... src/cursed-cd/main.s"
 	@echo "... src/cursed-help/main.o"
 	@echo "... src/cursed-help/main.i"
 	@echo "... src/cursed-help/main.s"

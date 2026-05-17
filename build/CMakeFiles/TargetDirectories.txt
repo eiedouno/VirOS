@@ -3,6 +3,7 @@
 /home/Grady/GitHub/VirOS/build/CMakeFiles/cursed-vim.dir
 /home/Grady/GitHub/VirOS/build/CMakeFiles/cursed-help.dir
 /home/Grady/GitHub/VirOS/build/CMakeFiles/cursed-mkdir.dir
+/home/Grady/GitHub/VirOS/build/CMakeFiles/cursed-cd.dir
 /home/Grady/GitHub/VirOS/build/CMakeFiles/edit_cache.dir
 /home/Grady/GitHub/VirOS/build/CMakeFiles/rebuild_cache.dir
 /home/Grady/GitHub/VirOS/build/CMakeFiles/list_install_components.dir

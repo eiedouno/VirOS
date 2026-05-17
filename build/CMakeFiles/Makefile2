@@ -68,6 +68,7 @@ all: CMakeFiles/cursed-ls.dir/all
 all: CMakeFiles/cursed-vim.dir/all
 all: CMakeFiles/cursed-help.dir/all
 all: CMakeFiles/cursed-mkdir.dir/all
+all: CMakeFiles/cursed-cd.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
@@ -76,6 +77,7 @@ codegen: CMakeFiles/cursed-ls.dir/codegen
 codegen: CMakeFiles/cursed-vim.dir/codegen
 codegen: CMakeFiles/cursed-help.dir/codegen
 codegen: CMakeFiles/cursed-mkdir.dir/codegen
+codegen: CMakeFiles/cursed-cd.dir/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -88,6 +90,7 @@ clean: CMakeFiles/cursed-ls.dir/clean
 clean: CMakeFiles/cursed-vim.dir/clean
 clean: CMakeFiles/cursed-help.dir/clean
 clean: CMakeFiles/cursed-mkdir.dir/clean
+clean: CMakeFiles/cursed-cd.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -129,7 +132,7 @@ CMakeFiles/cursed-cat.dir/clean:
 CMakeFiles/cursed-ls.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-ls.dir/build.make CMakeFiles/cursed-ls.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-ls.dir/build.make CMakeFiles/cursed-ls.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=5,6 "Built target cursed-ls"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=7,8 "Built target cursed-ls"
 .PHONY : CMakeFiles/cursed-ls.dir/all
 
 # Build rule for subdir invocation for target.
@@ -146,7 +149,7 @@ cursed-ls: CMakeFiles/cursed-ls.dir/rule
 # codegen rule for target.
 CMakeFiles/cursed-ls.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-ls.dir/build.make CMakeFiles/cursed-ls.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=5,6 "Finished codegen for target cursed-ls"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=7,8 "Finished codegen for target cursed-ls"
 .PHONY : CMakeFiles/cursed-ls.dir/codegen
 
 # clean rule for target.
@@ -161,7 +164,7 @@ CMakeFiles/cursed-ls.dir/clean:
 CMakeFiles/cursed-vim.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-vim.dir/build.make CMakeFiles/cursed-vim.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-vim.dir/build.make CMakeFiles/cursed-vim.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=9,10 "Built target cursed-vim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=11,12 "Built target cursed-vim"
 .PHONY : CMakeFiles/cursed-vim.dir/all
 
 # Build rule for subdir invocation for target.
@@ -178,7 +181,7 @@ cursed-vim: CMakeFiles/cursed-vim.dir/rule
 # codegen rule for target.
 CMakeFiles/cursed-vim.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-vim.dir/build.make CMakeFiles/cursed-vim.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=9,10 "Finished codegen for target cursed-vim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=11,12 "Finished codegen for target cursed-vim"
 .PHONY : CMakeFiles/cursed-vim.dir/codegen
 
 # clean rule for target.
@@ -193,7 +196,7 @@ CMakeFiles/cursed-vim.dir/clean:
 CMakeFiles/cursed-help.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-help.dir/build.make CMakeFiles/cursed-help.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-help.dir/build.make CMakeFiles/cursed-help.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=3,4 "Built target cursed-help"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=5,6 "Built target cursed-help"
 .PHONY : CMakeFiles/cursed-help.dir/all
 
 # Build rule for subdir invocation for target.
@@ -210,7 +213,7 @@ cursed-help: CMakeFiles/cursed-help.dir/rule
 # codegen rule for target.
 CMakeFiles/cursed-help.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-help.dir/build.make CMakeFiles/cursed-help.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=3,4 "Finished codegen for target cursed-help"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=5,6 "Finished codegen for target cursed-help"
 .PHONY : CMakeFiles/cursed-help.dir/codegen
 
 # clean rule for target.
@@ -225,7 +228,7 @@ CMakeFiles/cursed-help.dir/clean:
 CMakeFiles/cursed-mkdir.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-mkdir.dir/build.make CMakeFiles/cursed-mkdir.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-mkdir.dir/build.make CMakeFiles/cursed-mkdir.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=7,8 "Built target cursed-mkdir"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=9,10 "Built target cursed-mkdir"
 .PHONY : CMakeFiles/cursed-mkdir.dir/all
 
 # Build rule for subdir invocation for target.
@@ -242,13 +245,45 @@ cursed-mkdir: CMakeFiles/cursed-mkdir.dir/rule
 # codegen rule for target.
 CMakeFiles/cursed-mkdir.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-mkdir.dir/build.make CMakeFiles/cursed-mkdir.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=7,8 "Finished codegen for target cursed-mkdir"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=9,10 "Finished codegen for target cursed-mkdir"
 .PHONY : CMakeFiles/cursed-mkdir.dir/codegen
 
 # clean rule for target.
 CMakeFiles/cursed-mkdir.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-mkdir.dir/build.make CMakeFiles/cursed-mkdir.dir/clean
 .PHONY : CMakeFiles/cursed-mkdir.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/cursed-cd.dir
+
+# All Build rule for target.
+CMakeFiles/cursed-cd.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-cd.dir/build.make CMakeFiles/cursed-cd.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-cd.dir/build.make CMakeFiles/cursed-cd.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=3,4 "Built target cursed-cd"
+.PHONY : CMakeFiles/cursed-cd.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/cursed-cd.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Grady/GitHub/VirOS/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/cursed-cd.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Grady/GitHub/VirOS/build/CMakeFiles 0
+.PHONY : CMakeFiles/cursed-cd.dir/rule
+
+# Convenience name for target.
+cursed-cd: CMakeFiles/cursed-cd.dir/rule
+.PHONY : cursed-cd
+
+# codegen rule for target.
+CMakeFiles/cursed-cd.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-cd.dir/build.make CMakeFiles/cursed-cd.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Grady/GitHub/VirOS/build/CMakeFiles --progress-num=3,4 "Finished codegen for target cursed-cd"
+.PHONY : CMakeFiles/cursed-cd.dir/codegen
+
+# clean rule for target.
+CMakeFiles/cursed-cd.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cursed-cd.dir/build.make CMakeFiles/cursed-cd.dir/clean
+.PHONY : CMakeFiles/cursed-cd.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
