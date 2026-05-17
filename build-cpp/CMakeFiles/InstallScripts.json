@@ -1,7 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/root/GitHub/VirOS/build-cpp/cmake_install.cmake"
-	],
-	"Parallel" : false
-}

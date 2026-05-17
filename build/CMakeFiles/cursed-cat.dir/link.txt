@@ -1,0 +1,1 @@
+/usr/bin/c++  -O2 -static -Wl,--dependency-file=CMakeFiles/cursed-cat.dir/link.d "CMakeFiles/cursed-cat.dir/src/cursed-cat/main.cpp.o" -o cursed-cat

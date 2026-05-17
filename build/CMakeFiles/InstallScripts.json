@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/Grady/GitHub/VirOS/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

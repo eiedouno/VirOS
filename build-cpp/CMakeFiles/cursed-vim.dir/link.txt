@@ -1,1 +1,0 @@
-/usr/sbin/c++  -O2 -static -Wl,--dependency-file=CMakeFiles/cursed-vim.dir/link.d "CMakeFiles/cursed-vim.dir/src/cursed-vim/main.cpp.o" -o cursed-vim

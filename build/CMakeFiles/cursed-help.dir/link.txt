@@ -1,0 +1,1 @@
+/usr/bin/c++  -O2 -static -Wl,--dependency-file=CMakeFiles/cursed-help.dir/link.d "CMakeFiles/cursed-help.dir/src/cursed-help/main.cpp.o" -o cursed-help
