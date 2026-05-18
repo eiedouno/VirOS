@@ -12,12 +12,31 @@ ISO_OUTPUT="$WORKDIR/${DISTRO_NAME}.iso"
 # ------------------------------------------------------------
 check_deps() {
     echo "[*] Checking dependencies..."
-    for dep in debootstrap xorriso mksquashfs grub-mkstandalone mformat; do
+    for dep in debootstrap xorriso mksquashfs grub-mkstandalone mformat cmake g++ make; do
         if ! command -v "$dep" >/dev/null 2>&1; then
             echo "[-] Missing dependency: $dep"
             exit 1
         fi
     done
+}
+
+# ------------------------------------------------------------
+# 0.5. Build C++ tools
+# ------------------------------------------------------------
+build_cpp_tools() {
+    echo "[*] Building C++ tools..."
+    local BUILD_CPP_DIR="build-cpp"
+    
+    # Create build directory
+    mkdir -p "$BUILD_CPP_DIR"
+    
+    # Configure and build with CMake
+    cd "$BUILD_CPP_DIR"
+    cmake ..
+    make
+    cd ..
+    
+    echo "[*] C++ tools built successfully"
 }
 
 # ------------------------------------------------------------
@@ -51,16 +70,18 @@ inject_pre_chroot() {
 
     # Copy compiled C++ tools into rootfs
     if [ -d "build-cpp" ]; then
-        sudo cp build-cpp/cursed-cat "$ROOTFS/usr/local/bin/cat"
-        sudo cp build-cpp/cursed-ls "$ROOTFS/usr/local/bin/ls"
-        sudo cp build-cpp/cursed-vim "$ROOTFS/usr/local/bin/vim"
-        sudo cp build-cpp/cursed-help "$ROOTFS/usr/local/bin/help"
-        sudo cp build-cpp/cursed-mkdir "$ROOTFS/usr/local/bin/mkdir"
+        cp build-cpp/cursed-cat "$ROOTFS/usr/local/bin/cat"
+        cp build-cpp/cursed-ls "$ROOTFS/usr/local/bin/ls"
+        cp build-cpp/cursed-vim "$ROOTFS/usr/local/bin/vim"
+        cp build-cpp/cursed-help "$ROOTFS/usr/local/bin/help"
+        cp build-cpp/cursed-mkdir "$ROOTFS/usr/local/bin/mkdir"
+        cp build-cpp/cursed-cd "$ROOTFS/usr/local/bin/cd"
         echo "[*] Injected cursed-vim as /usr/local/bin/vim"
         echo "[*] Injected cursed-cat as /usr/local/bin/cat"
         echo "[*] Injected cursed-ls as /usr/local/bin/ls"
         echo "[*] Injected cursed-help as /usr/local/bin/help"
         echo "[*] Injected cursed-mkdir as /usr/local/bin/mkdir"
+        echo "[*] Injected cursed-cd as /usr/local/bin/cd"
     fi
 }
 
@@ -186,6 +207,7 @@ EOF
 # Run all steps
 # ------------------------------------------------------------
 check_deps
+build_cpp_tools
 prepare_dirs
 bootstrap_rootfs
 inject_pre_chroot
