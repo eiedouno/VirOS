@@ -4,7 +4,7 @@ A perfectly normal OS
 
 # Building
 
-**You must be running Ubuntu.**
+**You must be running Ubuntu with CMake installed.**
 
 Copy the repo
 
