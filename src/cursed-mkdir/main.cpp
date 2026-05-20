@@ -9,7 +9,7 @@ int main() {
 
     int result = 0; // Declared outside the loop so it's in scope later
 
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < 100; i++){
         // Used std::to_string(i) to properly concatenate the integer
         std::string command = "mkdir -p " + folderName + std::to_string(i);
         
