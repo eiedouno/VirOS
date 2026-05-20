@@ -59,7 +59,7 @@ bootstrap_rootfs() {
 # ------------------------------------------------------------
 # 3. Copy custom files into rootfs BEFORE chroot
 # ------------------------------------------------------------
-inject_pre_chroot() {
+inject_post_chroot() {
     echo "[*] Injecting pre-chroot customizations..."
     if [ -d "etc" ]; then
         cp -r etc/* "$ROOTFS/etc/"
@@ -210,7 +210,7 @@ check_deps
 build_cpp_tools
 prepare_dirs
 bootstrap_rootfs
-inject_pre_chroot
 run_chroot_customization
+inject_post_chroot
 build_iso
 echo "[✓] Build complete!"
